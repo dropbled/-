@@ -1,1 +1,17 @@
+3)Задача: перемножьте две матрицы!
 
+На вход программе подаются две матрицы, каждая в следующем формате: на первой строке два целых положительных числа n и m, разделенных пробелом - размерность матрицы. В следующей строке находится n⋅mцелых чисел, разделенных пробелами - элементы матрицы. Подразумевается, что матрица заполняется построчно, то есть первые m чисел - первый ряд матрицы, числа от m+1 до 2⋅m - второй, и т.д.
+
+import numpy as np
+
+x_shape = tuple(map(int, input().split()))
+X = np.fromiter(map(int, input().split()), np.int).reshape(x_shape)
+y_shape = tuple(map(int, input().split()))
+Y = np.fromiter(map(int, input().split()), np.int).reshape(y_shape)
+Y=np.transpose(Y)
+N=len(X[0,:])
+M=len(Y[:,0])
+if N==M:
+ print( X.dot(Y) )
+else : 
+ print('matrix shapes do not match')
