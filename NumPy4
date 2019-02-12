@@ -4,6 +4,10 @@
 
 Посчитайте и напечатайте вектор из средних значений вдоль столбцов входных данных.
 
+Sample Input:
+
+https://stepic.org/media/attachments/lesson/16462/boston_houses.csv
+
 from urllib.request import urlopen
 import numpy as np
 
