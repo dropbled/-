@@ -1,0 +1,19 @@
+Реализуйте функцию compute_grad_numerically_2, которая вычисляет градиент целевой функции по определению, «отступая» в две стороны одновременно
+
+import numpy as np
+
+def compute_grad_numerically_2(neuron, X, y, J=J_quadratic, eps=10e-2):
+    # here goes your code
+        w_0 = neuron.w
+        num_grad = np.zeros(w_0.shape)
+        for i in range(len(w_0)):
+            old_wi = neuron.w[i].copy()
+            neuron.w[i] += eps
+            pos_cost = J(neuron, X, y)
+            neuron.w[i] = old_wi
+            neuron.w[i] -= eps
+            neg_cost = J(neuron, X, y)
+            num_grad[i] = (pos_cost - neg_cost) / (2 * eps)
+            neuron.w[i] = old_wi
+            
+        return num_grad
