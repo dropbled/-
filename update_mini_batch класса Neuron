@@ -1,0 +1,14 @@
+Реализуйте метод update_mini_batch класса Neuron. 
+update_mini_batch считает градиент и обновляет веса нейрона на основе всей переданной ему порции данных, кроме того, возвращает 1, если алгоритм сошелся (абсолютное значение изменения целевой функции до и после обновления весов < eps), иначе возвращает 0.
+
+import numpy as np
+
+def update_mini_batch(self, X, y, learning_rate, eps):
+    # here goes your code
+        J_b = J_quadratic(self, X, y)
+        grad = compute_grad_analytically(self, X, y)
+        self.w = self.w - learning_rate * grad
+        J_a = J_quadratic(self, X, y)
+        dJ = abs(J_b - J_a)
+
+        return int(dJ < eps)
