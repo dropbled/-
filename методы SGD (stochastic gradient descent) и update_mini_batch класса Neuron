@@ -1,0 +1,28 @@
+SGD реализует основной цикл алгоритма. Должен возвращать 1, если градиентный спуск сошёлся, и 0 — если максимальное число итераций было достигнуто раньше, чем изменения в целевой функции стали достаточно малы. 
+update_mini_batch считает градиент и обновляет веса нейрона на основе всей переданной ему порции данных, кроме того, возвращает 1, если алгоритм сошелся (абсолютное значение изменения целевой функции до и после обновления весов < eps), иначе возвращает 0.
+Необходимые внешние методы (compute_grad_analytically, J_quadratic) уже определены чуть ниже класса Neuron.
+
+
+import numpy as np
+
+def SGD(self, X, y, batch_size, learning_rate=0.1, eps=1e-6, max_steps=200):
+    # here goes your code
+
+    res = 0
+    step = 0
+    while res != 1 and step < max_steps:
+        mini_batch = np.random.choice(len(X), batch_size, replace=False)
+        res = self.update_mini_batch(X[mini_batch], y[mini_batch], learning_rate, eps)
+        step += 1
+
+    return res
+    
+def update_mini_batch(self, X, y, learning_rate, eps):
+    # here goes your code
+        J_b = J_quadratic(self, X, y)
+        grad = compute_grad_analytically(self, X, y)
+        self.w = self.w - learning_rate * grad
+        J_a = J_quadratic(self, X, y)
+        dJ = abs(J_b - J_a)
+
+        return int(dJ < eps)
