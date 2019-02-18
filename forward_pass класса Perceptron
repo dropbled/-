@@ -1,0 +1,16 @@
+def forward_pass(self, single_input):
+        """
+        Метод рассчитывает ответ перцептрона при предъявлении одного примера
+        single_input - вектор примера размера (m, 1).
+        Метод возвращает число (0 или 1) или boolean (True/False)
+        """
+        
+        result = 0
+        for i in range(0, len(self.w)):
+            result += self.w[i] * single_input[i]
+        result += self.b
+        
+        if result > 0:
+            return 1
+        else:
+            return 0
