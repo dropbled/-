@@ -6,6 +6,13 @@ def train_on_single_example(self, example, y):
         и возвращает размер ошибки, которая случилась на этом примере до изменения весов (0 или 1)
         (на её основании мы потом построим интересный график)
         """
+import numpy as np
 
+def train_on_single_example(self, example, y):
+    # your code goes here
+        yy = self.vectorized_forward_pass(example.T)[0][0]
+        d = y - yy
+        self.b += d
+        self.w += d * example
+        return d
 
-        pass
